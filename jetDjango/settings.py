@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import jetDjango.credentials as credentials
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ew1-o@wbe8c)6+mav7ndod6txwszftd#4*)g&_7dgn9%8zcg#z'
+SECRET_KEY = credentials.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -75,8 +76,12 @@ WSGI_APPLICATION = 'jetDjango.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': credentials.DEVELOPMENT_DATABASE['NAME'],
+        'USER': credentials.DEVELOPMENT_DATABASE['USER'],
+        'PASSWORD': credentials.DEVELOPMENT_DATABASE['PASSWORD'],
+        'HOST': credentials.DEVELOPMENT_DATABASE['HOST'],
+        'PORT': credentials.DEVELOPMENT_DATABASE['PORT'],
     }
 }
 
