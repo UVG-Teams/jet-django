@@ -30,5 +30,7 @@ router.register(r'locations', LocationViewSet)
 
 urlpatterns = [
     url('admin/', admin.site.urls),
+    url(r'^api-auth/', include('rest_framework.urls', namespace = 'rest_framework')),
+    url(r'^api/', include(router.urls)),
     url(r'^admin/initial-data/', create_initial_data),
 ]
