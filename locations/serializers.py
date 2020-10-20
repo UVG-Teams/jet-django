@@ -9,12 +9,6 @@ class LocationSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'name',
-            'shortname',
-            'postcode',
-            'code',
             'location_type',
             'parent',
-            'latitude',
-            'longitude',
-            'language',
         )
