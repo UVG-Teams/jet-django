@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-# Create your models here.
+
 class Location(models.Model):
 
     class LocationType(models.TextChoices):
@@ -10,9 +10,6 @@ class Location(models.Model):
         state         = 'State',        _('State') 
         departament   = 'Departament',  _('Departament') 
         municipality  = 'Municipality', _('Municipality') 
-        city          = 'City',         _('City') 
-        town          = 'Town',         _('Town') 
-        zone          = 'Zone',         _('Zone')  
 
     name = models.CharField(
         max_length = 30,

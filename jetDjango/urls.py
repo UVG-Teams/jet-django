@@ -18,6 +18,11 @@ from django.conf.urls import url, include
 from django.urls import path
 
 from rest_framework import routers
+# from django_rest_framework_jet.views import (
+#     obtain_jet_token,
+#     refresh_jet_token,
+#     verify_jet_token,
+# )
 
 from init import create_initial_data
 
@@ -30,7 +35,10 @@ router.register(r'locations', LocationViewSet)
 
 urlpatterns = [
     url('admin/', admin.site.urls),
+    url(r'^admin/initial-data/', create_initial_data),
     url(r'^api-auth/', include('rest_framework.urls', namespace = 'rest_framework')),
     url(r'^api/', include(router.urls)),
-    url(r'^admin/initial-data/', create_initial_data),
+    # url(r'^api/token-auth/', obtain_jet_token),
+    # url(r'^api/token-refresh/', refresh_jet_token),
+    # url(r'^api/token-verify/', verify_jet_token),
 ]
