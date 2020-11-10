@@ -6,6 +6,7 @@ from jetDjango.settings import GLOBAL_JET
 from jet.utils import hmac_sha256
 from jet.exceptions import JETException
 
+
 class JETAuthentication(authentication.BaseAuthentication):
     def authenticate(self, request):
         token = self.get_token(request)

@@ -35,6 +35,7 @@ class GenerateJET(APIView):
         token = GLOBAL_JET.encrypt(user_secret, payload)
         return Response({ "token": token })
 
+
 class VerifyJET(APIView):
 
     def post(self, request, *args, **kwargs):
@@ -45,7 +46,7 @@ class VerifyJET(APIView):
 
         is_valid_token = GLOBAL_JET.is_valid_token(token)
         return Response({ "is valid token": is_valid_token })
-        
+
 
 
 class RefreshJET(APIView):
@@ -58,6 +59,7 @@ class RefreshJET(APIView):
 
         new_token = GLOBAL_JET.refresh_token(token)
         return Response({ "token": new_token })
+
 
 generate_jet = GenerateJET.as_view()
 verify_jet = VerifyJET.as_view()
