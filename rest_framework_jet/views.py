@@ -51,10 +51,13 @@ class VerifyJET(APIView):
 class RefreshJET(APIView):
 
     def post(self, request, *args, **kwargs):
-        payload = {}
-        user_secret = hmac_sha256('user-password', 'user-password', 'ascii')
-        token = GLOBAL_JET.encrypt(user_secret, payload)
-        return Response(token)
+        token = request.data['token']
+
+        if not token:
+            raise exceptions.AuthenticationFailed('A token has not been generated')
+
+        new_token = GLOBAL_JET.refresh_token(token)
+        return Response({ "token": new_token })
 
 generate_jet = GenerateJET.as_view()
 verify_jet = VerifyJET.as_view()
