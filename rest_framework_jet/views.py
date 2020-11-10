@@ -45,7 +45,7 @@ class VerifyJET(APIView):
             raise exceptions.AuthenticationFailed('A token has not been generated')
 
         is_valid_token = GLOBAL_JET.is_valid_token(token)
-        return Response({ "is valid token": is_valid_token })
+        return Response({ "valid": is_valid_token })
 
 
 
