@@ -53,7 +53,6 @@ class UserTestCase(TestCase):
     response = c.post('/api/token-auth/' , self.credentials)
     token = response.data['token']
     meta , payload = self.JET.decrypt_from_PK(token)
-    print (meta)
     self.assertTrue('rnd' in meta)
 
   def test_decrypt_token_meta_type(self):
