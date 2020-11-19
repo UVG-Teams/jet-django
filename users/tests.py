@@ -34,11 +34,8 @@ class UserTestCase(TestCase):
     header = {
       'Authorization': 'JET {}'.format(token)
     }
-    try:
-      response = c.post('/api/token-verify/' ,data = {'token': token}, **header) # Esto deberia lanzar un super error
-      self.assertEquals(response.status, 500)
-    except:
-      self.assertEquals(True, True) #Esto deberia de pasar
+    response = c.post('/api/token-verify/' ,data = {'token': token}, **header) # Esto deberia lanzar un super error
+    self.assertEquals(response.status_code, 500)
 
 
   def test_decrypt_token_payload(self):
@@ -48,7 +45,7 @@ class UserTestCase(TestCase):
     meta , payload = self.JET.decrypt_from_PK(token)
     self.assertTrue('id' in payload)
 
-  def test_decrypt_token_meta(self):
+  def test_decrypt_token_meta_rnd(self):
     c = self.client
     response = c.post('/api/token-auth/' , self.credentials)
     token = response.data['token']
@@ -61,3 +58,5 @@ class UserTestCase(TestCase):
     token = response.data['token']
     meta , payload = self.JET.decrypt_from_PK(token)
     self.assertEquals('JET-1' , meta['typ'])
+
+  # def test_refresh_token
