@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
-    'rest_framework_jet',
+    'corsheaders',
+    'rest_framework_jet', # Esta es nuestra libreria de JET
 
     'locations.apps.LocationsConfig',
     'users.apps.UsersConfig',
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -141,3 +143,5 @@ REST_FRAMEWORK = {
 GLOBAL_JET = JET(
     SECRET = SECRET_KEY
 )
+
+CORS_ORIGIN_ALLOW_ALL = True
