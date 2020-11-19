@@ -18,6 +18,9 @@ class UserTestCase(TestCase):
 
   def test_verify_token(self):
     c = self.client
-    response = c.post('/api/token-verify/' , {'token': self.token})
-    print(response)
+    header = {
+      'Authorization': 'JWT {}'.format(self.token)
+    }
+    response = c.post('/api/token-verify/' ,data = {'token': self.token}, **header)
+    print(response.data)
     # self.assertTrue('token' in response.data)
