@@ -2,7 +2,6 @@
 
 <h2 align="center">JET</h2>
 <h3 align="center">Proyecto UVG Cifrado de Información</h3>
-<h3 align="left">Este repositorio contiene la parte de Django necesaria para el funcionamiento de JET</h3>
 
 ## Configuración de entorno
 
@@ -25,7 +24,7 @@
 * [Si necesita ayuda para instalar psycopg2](https://www.psycopg.org/)
 
 ## Configuración de Base de Datos
-* Crear archivo /tutos/credentials.py
+* Crear archivo /jet/credentials.py
     ```python
     DEVELOPMENT_DATABASE = {
         'NAME': 'jet_db',
@@ -34,4 +33,15 @@
         'HOST': 'tu-host',
         'PORT': 'tu-puerto',
     }
+    ```
+* Crear/resetear db y correr migrations
+    ```shell
+    $ python load_data.py
+    ```
+
+## Desarrollo
+
+* Run Server
+    ```shell
+    $ python manage.py runserver
     ```
