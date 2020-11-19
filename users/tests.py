@@ -59,4 +59,15 @@ class UserTestCase(TestCase):
     meta , payload = self.JET.decrypt_from_PK(token)
     self.assertEquals('JET-1' , meta['typ'])
 
-  # def test_refresh_token
+  def test_refresh_token_valid(self):
+    c = self.client
+    response = c.post('/api/token-auth/' , self.credentials)
+    token = response.data['token']
+    response = c.post('/api/token-refresh/' , data = {'token' : token})
+    self.assertFalse(token == response.data['token']) # Esto indica que NO son iguales
+
+  def test_refresh_token_invalid(self):
+    c = self.client
+    token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+    response = c.post('/api/token-refresh/' , data = {'token' : token})
+    self.assertEquals(response.status_code , 500) # Esto indica que hubo un error interno
